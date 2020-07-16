@@ -90,14 +90,14 @@ class StaffList extends React.Component {
       return;
     }
     // Element has not actually moved.
-    if (result.destination.index === result.source.index) {
+    if (result.destination.Collaborators === result.source.Collaborators) {
       return;
     }
 
     const removeFromStaffList = prevState => {
       const newStaffList = Array.from(prevState.staffList);
-      const [removed] = newStaffList.splice(result.source.index, 1);
-      newStaffList.splice(result.destination.index, 0, removed);
+      const [removed] = newStaffList.splice(result.source.Collaborators, 1);
+      newStaffList.splice(result.destination.Collaborators, 0, removed);
       return newStaffList;
     };
 

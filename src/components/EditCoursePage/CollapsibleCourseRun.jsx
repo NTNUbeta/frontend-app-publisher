@@ -15,7 +15,6 @@ import {
 import Pill from '../Pill';
 import RenderInputTextField from '../RenderInputTextField';
 import RenderSelectField from '../RenderSelectField';
-import StaffList from '../StaffList';
 import DateTimeField from '../DateTimeField';
 import store from '../../data/store';
 import TranscriptLanguage from './TranscriptLanguage';
@@ -29,6 +28,8 @@ import {
   dateEditHelp, runTypeHelp, pacingEditHelp, publishDateHelp,
 } from '../../helpText';
 import RichEditor from '../RichEditor';
+import ListField from '../ListField';
+import { fetchStaffSuggestions, renderStaffSuggestion, Staffer } from '../Staffer';
 
 const determineStatus = run => (courseRunIsArchived(run) ? ARCHIVED : run.status);
 
@@ -394,14 +395,19 @@ class CollapsibleCourseRun extends React.Component {
         />
         <Field
           name={`${courseId}.staff`}
-          component={StaffList}
+          component={ListField}
+          fetchSuggestions={fetchStaffSuggestions(owners)}
+          renderSuggestion={renderStaffSuggestion}
+          createNewUrl="/instructors/new"
+          referrer={`/courses/${courseUuid}`}
+          itemType="staff"
+          renderItemComponent={Staffer}
           extraInput={{ onInvalid: this.openCollapsible }}
           disabled={disabled}
           courseRunKey={courseRun.key}
           owners={owners}
-          courseUuid={courseUuid}
           sourceInfo={sourceInfo}
-          stafferInfo={stafferInfo}
+          newItemInfo={stafferInfo}
         />
         <div className="row">
           <div className="col-6">

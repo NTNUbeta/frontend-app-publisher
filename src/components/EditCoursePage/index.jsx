@@ -197,6 +197,9 @@ class EditCoursePage extends React.Component {
       prerequisites_raw: courseData.prerequisites_raw,
       ...priceData,
       short_description: courseData.short_description,
+      // Reduce collaborator list to just the UUID
+      collaborators: courseData.collaborators
+        ? courseData.collaborators.map(staffer => staffer.uuid) : courseData.collaborators,
       subjects: [
         courseData.subjectPrimary,
         courseData.subjectSecondary,
@@ -344,6 +347,7 @@ class EditCoursePage extends React.Component {
           outcome,
           subjects,
           image,
+          collaborators,
           prerequisites_raw,
           level_type,
           learner_testimonials,
@@ -384,6 +388,7 @@ class EditCoursePage extends React.Component {
       prices,
       type,
       url_slug,
+      collaborators,
       course_runs: this.buildCourseRuns(),
     };
   }

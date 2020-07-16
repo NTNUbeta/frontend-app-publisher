@@ -15,6 +15,7 @@ import courseRunOptions from './courseRunOptions';
 import sourceInfo from './sourceInfo';
 import courseSubmitInfo from './courseSubmitInfo';
 import darkMode from './darkMode';
+import collaboratorInfo from './collaboratorInfo';
 
 export default history => combineReducers({
   router: connectRouter(history),
@@ -32,4 +33,5 @@ export default history => combineReducers({
   sourceInfo,
   courseSubmitInfo,
   darkMode,
+  collaboratorInfo,
 });
