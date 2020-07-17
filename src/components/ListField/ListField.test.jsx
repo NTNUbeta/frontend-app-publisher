@@ -5,7 +5,7 @@ import axios from 'axios';
 import MockAdapter from 'axios-mock-adapter';
 
 import ListField from './index';
-import { renderSuggestion } from '../Collaborator';
+import { Collaborator, renderSuggestion } from '../Collaborator';
 
 const mockClient = new MockAdapter(axios);
 
@@ -47,12 +47,13 @@ const autoCompleteCollaboratorResponses = {
 const defaultProps = {
   input,
   renderSuggestion,
+  renderItemComponent: Collaborator,
+  createNewUrl: "/collaborators/new",
+  itemType: "collaborator",
   meta: {
     submitFailed: false,
     error: '',
   },
-  courseUuid: '11111111-1111-1111-1111-111111111111',
-  courseRunKey: 'DemoX+TestCourse',
 };
 
 const newCollaborator = {
@@ -62,7 +63,6 @@ const newCollaborator = {
 };
 
 const referredProps = {
-
   ...defaultProps,
   collaboratorInfo: {
     data: newCollaborator,
