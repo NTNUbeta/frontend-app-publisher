@@ -12,11 +12,13 @@ import { fetchCourseRunOptions } from '../../data/actions/courseRunOptions';
 import { fetchOrganizationRoles } from '../../data/actions/organizationRoles';
 import { fetchOrganizationUsers } from '../../data/actions/organizationUsers';
 import { addComment, fetchComments } from '../../data/actions/comments';
+import { fetchCollaboratorOptions } from '../../data/actions/collaboratorOptions';
 
 const mapStateToProps = state => ({
   comments: state.comments,
   courseEditors: state.courseEditors,
   courseInfo: state.courseInfo,
+  collaboratorOptions: state.collaboratorOptions,
   courseOptions: state.courseOptions,
   courseRunOptions: state.courseRunOptions,
   courseSubmitInfo: state.courseSubmitInfo,
@@ -43,6 +45,7 @@ const mapDispatchToProps = {
   clearCreateStatusAlert,
   removeCourseEditor,
   updateFormValuesAfterSave,
+  fetchCollaboratorOptions,
 };
 
 const mergeProps = (stateProps, actionProps, { uuid }) => ({

@@ -26,15 +26,22 @@ export function collaboratorCreateFail(error) {
   return { type: CREATE_COLLABORATOR_FAIL, error };
 }
 
+export function editCollaboratorInfoFail(error) {
+  return { type: EDIT_COLLABORATOR_INFO_FAIL, error };
+}
+
+export function editCollaboratorInfoSuccess(data) {
+  return { type: EDIT_COLLABORATOR_INFO_SUCCESS, data };
+}
+
+export function editCollaboratorInfo(data) {
+  return { type: EDIT_COLLABORATOR_INFO, data };
+}
+
 export function createCollaborator(collaboratorData, referrer = null) {
   return (dispatch) => {
     dispatch(createNewCollaborator(collaboratorData));
-    return Promise.resolve({
-      data: {
-        ...collaboratorData,
-        uuid: '99999',
-      },
-    })
+    return DiscoveryDataApiService.createCollaborator(collaboratorData)
       .then((response) => {
         const collaborator = response.data;
         dispatch(collaboratorCreateSuccess(collaborator));
@@ -47,18 +54,6 @@ export function createCollaborator(collaboratorData, referrer = null) {
         dispatch(collaboratorCreateFail(['Collaborator create failed, please try again or contact support.'].concat(getErrorMessages(error))));
       });
   };
-}
-
-export function editCollaboratorInfoFail(error) {
-  return { type: EDIT_COLLABORATOR_INFO_FAIL, error };
-}
-
-export function editCollaboratorInfoSuccess(data) {
-  return { type: EDIT_COLLABORATOR_INFO_SUCCESS, data };
-}
-
-export function editCollaboratorInfo(data) {
-  return { type: EDIT_COLLABORATOR_INFO, data };
 }
 
 export function editCollaborator(collaboratorData, referrer = null) {
@@ -76,7 +71,7 @@ export function editCollaborator(collaboratorData, referrer = null) {
         }
       })
       .catch((error) => {
-        dispatch(editCollaboratorInfoFail(['Edit instructor failed, please try again or contact support.'].concat(getErrorMessages(error))));
+        dispatch(editCollaboratorInfoFail(['Edit collaborator failed, please try again or contact support.'].concat(getErrorMessages(error))));
       });
   };
 }

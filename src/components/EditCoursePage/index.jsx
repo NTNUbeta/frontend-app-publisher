@@ -55,6 +55,7 @@ class EditCoursePage extends React.Component {
     this.props.fetchCourseInfo();
     this.props.fetchCourseOptions();
     this.props.fetchCourseRunOptions();
+    this.props.fetchCollaboratorOptions();
     this.setStartedFetching();
   }
 
@@ -644,6 +645,7 @@ EditCoursePage.defaultProps = {
     data: {},
   },
   courseOptions: {},
+  collaboratorOptions: {},
   courseRunOptions: {},
   fetchComments: () => null,
   fetchCourseEditors: () => null,
@@ -652,6 +654,7 @@ EditCoursePage.defaultProps = {
   fetchCourseRunOptions: () => {},
   fetchOrganizationRoles: () => null,
   fetchOrganizationUsers: () => null,
+  fetchCollaboratorOptions: () => null,
   editCourse: () => null,
   clearSubmitStatus: () => {},
   clearCourseReviewAlert: () => {},
@@ -696,6 +699,11 @@ EditCoursePage.propTypes = {
     error: PropTypes.arrayOf(PropTypes.string),
     isFetching: PropTypes.bool,
   }),
+  collaboratorOptions: PropTypes.shape({
+    data: PropTypes.shape(),
+    error: PropTypes.arrayOf(PropTypes.string),
+    isFetching: PropTypes.bool,
+  }),
   fetchComments: PropTypes.func,
   fetchCourseEditors: PropTypes.func,
   fetchCourseInfo: PropTypes.func,
@@ -703,6 +711,7 @@ EditCoursePage.propTypes = {
   fetchCourseRunOptions: PropTypes.func,
   fetchOrganizationRoles: PropTypes.func,
   fetchOrganizationUsers: PropTypes.func,
+  fetchCollaboratorOptions: PropTypes.func,
   editCourse: PropTypes.func,
   clearSubmitStatus: PropTypes.func,
   clearCourseReviewAlert: PropTypes.func,

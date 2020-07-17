@@ -170,7 +170,7 @@ export class BaseEditCourseForm extends React.Component {
       courseOptions,
       courseRunOptions,
       initialValues,
-      collaboratorInfo,
+      collaboratorOptions,
     } = this.props;
     const {
       open,
@@ -192,18 +192,13 @@ export class BaseEditCourseForm extends React.Component {
       && parseOptions(courseRunOptionsData.content_language.choices));
     const programOptions = (courseRunOptionsData
       && parseOptions(courseRunOptionsData.expected_program_type.choices));
+    console.log({collaboratorOptions});
 
-    const collaboratorOptions = [
-      {
-        name: 'Beaker',
-        uuid: '12345',
-        image: {
-          original: {
-            url: 'http://localhost:18381/media/media/course/collaborator/image/b6de3600-74da-434d-95fb-5059e4551934-99d06ebc42bc.jpg',
-          },
-        },
+    const {
+      data: {
+        results: allCollaborators,
       },
-    ];
+    } = collaboratorOptions;
 
     const parsedTypeOptions = courseOptionsData
       && parseCourseTypeOptions(courseOptionsData.type.type_options);
@@ -316,7 +311,7 @@ export class BaseEditCourseForm extends React.Component {
             <Field
               name="collaborators"
               component={ListField}
-              fetchSuggestions={fetchCollabSuggestions(collaboratorOptions)}
+              fetchSuggestions={fetchCollabSuggestions(allCollaborators)}
               createNewUrl="/collaborators/new"
               referrer={`/courses/${uuid}`}
               itemType="collaborator"
