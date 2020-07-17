@@ -48,6 +48,17 @@ class CollaboratorPage extends React.Component {
 
     const isCreateForm = !this.props.editCollaborator;
 
+    if (!isCreateForm && (!location.state || !location.state.uuid)) {
+      return (
+        <StatusAlert
+          id="error"
+          alertType="danger"
+          title="Could not load page: "
+          message="Direct access to collaborators not supported"
+        />
+      );
+    }
+
     const titleText = isCreateForm ? 'Create New Collaborator' : 'Edit Collaborator';
     const handleSubmit = (isCreateForm
       ? this.handleCollaboratorCreate
