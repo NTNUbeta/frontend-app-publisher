@@ -14,7 +14,7 @@
     "lint": "fedx-scripts eslint --ext .jsx,.js .",
     "prepush": "npm run lint; npm run stylelint",
     "prepublishOnly": "npm run build",
-    "start": "fedx-scripts webpack-dev-server --progress",
+    "start": "fedx-scripts webpack-dev-server --progress --disable-host-check",
     "debug-test": "node --inspect-brk node_modules/.bin/jest --coverage --runInBand",
     "test": "TZ=GMT fedx-scripts jest --coverage --runInBand",
     "snapshot": "TZ=GMT fedx-scripts jest --updateSnapshot",
